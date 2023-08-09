@@ -2,16 +2,20 @@
 
 context('Login feito com sucesso', () =>{
 
+    beforeEach(() => {
+        cy.visit('minha-conta/')
+    });
+    
+    
+
     it('deve fazer login com sucesso', () => {
-           cy.visit('minha-conta/')
            cy.get('#username').type('aluno_ebac@teste.com')
            cy.get('#password'). type('teste@teste.com')
            cy.get('.woocommerce-form > .button').click()
-           cy.get('a > .hidden-xs').should('contain', 'Welcome Aluno')
+           cy.get('.topbar-inner > :nth-child(1) > .list-inline > :nth-child(2) > a').should('contain', 'Logout')
     })
 
     it('deve exibir uma mensagem de erro ao inserir usuario invalido', () => {
-        cy.visit('minha-conta/')
         cy.get('#username').type('aluno_ebac222@teste.com')
         cy.get('#password'). type('teste@teste.com')
         cy.get('.woocommerce-form > .button').click()
@@ -20,7 +24,6 @@ context('Login feito com sucesso', () =>{
 
 
     it('deve exibir uma mensagem de erro ao inserir senha', () => {
-        cy.visit('minha-conta/')
         cy.get('#username').type('aluno_ebac@teste.com')
         cy.get('#password'). type('teste2222@teste.com')
         cy.get('.woocommerce-form > .button').click()
