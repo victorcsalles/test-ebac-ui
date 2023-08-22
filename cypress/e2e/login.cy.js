@@ -20,7 +20,7 @@ context('Login feito com sucesso', () =>{
     })
 
     
-    it.only('Deve fazer login com sucesso - usando fixture ', () => {
+    it('Deve fazer login com sucesso - usando fixture ', () => {
         cy.fixture('perfil').then(dados => {
             
             cy.get('#username').type(dados.usuario,{log: false})

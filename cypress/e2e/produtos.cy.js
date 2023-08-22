@@ -10,7 +10,7 @@ describe('Funcionalidade para adicionar produtos ao carrinho ', () => {
         cy.get('[class="product-block grid"]').contains('Ajax Full-Zip Sweatshirt').click()
 
     });
-    it.only('Deve adicionar um produto ao carrinho ', () => {
+    it('Deve adicionar um produto ao carrinho ', () => {
           var quantidade = 9
         
         cy.get(':nth-child(7) > .page-numbers').click()
@@ -25,5 +25,28 @@ describe('Funcionalidade para adicionar produtos ao carrinho ', () => {
         cy.get('.dropdown-toggle > .mini-cart-items').should('contain' , quantidade)
         cy.get('.woocommerce-message').should('contain' , quantidade + ' × “Supernova Sport Pant” foram adicionados no seu carrinho.')
 
+    });
+
+
+    it('Deve fazer add no carrinho com commando', () => {
+        
+        cy.addProdutos('Stellar Solar Jacket', 'S', 'Blue', 3)
+        
+    });
+
+
+    
+    it('Deve fazer add no carrinho com commando', () => {
+        
+        cy.addProdutos('Strike Endurance Tee', 'S', 'Blue', 3)
+        
+    });
+
+
+    
+    it('Deve fazer add no carrinho com commando', () => {
+        
+        cy.addProdutos('Teton Pullover Hoodie', 'S', 'Black', 3)
+        
     });
 });
