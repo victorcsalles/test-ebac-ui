@@ -25,9 +25,9 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
 
-Cypress.Commands.add('login', (email, senha) => {
+Cypress.Commands.add('login', (usuario, senha) => {
 
-    cy.get('#username').type(email)
+    cy.get('#username').type(usuario)
     cy.get('#password').type(senha)
     cy.get('.woocommerce-form > .button').click()
 

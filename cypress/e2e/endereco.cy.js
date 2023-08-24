@@ -1,4 +1,7 @@
 /// <reference types="cypress" />
+import { faker } from '@faker-js/faker';
+
+import EnderecoPage from "../support/page-objects/endereco.page";
 
 
 describe('Funcionalidade endereco - Faturamento e entrega ', () => {
@@ -6,13 +9,18 @@ describe('Funcionalidade endereco - Faturamento e entrega ', () => {
       beforeEach(() => {
         
            cy.visit('minha conta/')
-           cy.login('aluno_ebac@teste.com','teste@teste.com')
+           cy.fixture('perfil').then(dados => {
+             cy.login(dados.usuario , dados.senha)
+           })
+           
       });
 
 
-    it('Deve fazer cadastro de faturamento com sucesso ', () => {
-        
-        cy.get('.woocommerce-MyAccount-navigation-link--edit-address > a').click()
+    it('Deve fazer cadastro  de faturamento com sucesso ', () => {
+         
+        EnderecoPage.editarEnderecoFaturamento()
+    
+        cy.get('.woocommerce-message').should('contain','Endereço alterado com sucesso.')
         
 
     });
